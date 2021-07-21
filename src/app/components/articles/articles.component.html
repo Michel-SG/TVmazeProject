@@ -1,0 +1,34 @@
+<div class="container fw-bold vw-100">
+    <form class="margeBook d-flex mx-5 justify-content-center" [formGroup]="searchForm" (ngSubmit)="onSubmitSearch() " >
+        <input class="form-control me-sm-2" type="text" placeholder="Recherche" formControlName="parameter">
+        <button class="btn btn-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i> Recherche</button>
+      </form>
+    <h2 class="text-center " *ngIf="articles">Les épisodes!</h2>
+    <div class="row  d-flex flex-row w-100 " *ngIf="responses == null">
+        <div class=" col-md-4" *ngFor="let book of articles; let i = index">
+            <article class="card border rounded bg-white shadow book mb-4 mt-2">
+                <div class="mw-100 overflow-hidden">
+                    <a [routerLink]="['/book/view/', book.id]"><img [src]="book.image.original" class="card-img-top" alt="..."
+                            class="w-100 rounded-top "></a>
+                </div>
+                <div class="card-body">
+                    <p class="card-text p-0 m-0">{{book.name}}</p>
+                </div>
+            </article>
+        </div>
+    </div>
+    <div class="row  d-flex flex-row w-100 " *ngIf="responses != null">
+        <div class=" col-md-4" *ngFor="let book of responses; let i = index">
+            <article class="card border rounded bg-white shadow book mb-4 mt-2">
+                <div class="mw-100 overflow-hidden">
+                    <a [routerLink]="['/book/view/, book.show.id']"><img [src]="book.show.image.original" class="card-img-top" alt="..."
+                            class="w-100 rounded-top "></a>
+                </div>
+                <div class="card-body">
+                    <p class="card-text p-0 m-0">{{book.show.name}}</p> 
+                </div>
+            </article>
+        </div>
+    </div> 
+
+</div>
